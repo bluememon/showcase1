@@ -1,0 +1,44 @@
+@import './variables.scss';
+@import './theme.scss';
+@import './styles/infoBox.scss';
+@import './styles/forms.scss';
+@import './styles/modal.scss';
+
+/* here we add the main layout css classes */
+
+.appContainer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    align-content: stretch;
+    min-height: 100vh;
+
+    overflow: scroll;
+    overflow-y: scroll;
+
+    background-size: 100% auto;
+    background-repeat: repeat-y;
+    background-image: url('/assets/background.jpg');
+
+    .appMainContent {
+        position: relative;
+        flex: 1; // we use this property so this container can reach the rest of all the vertical space
+        margin: 0;
+        padding: 90px 30px;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    
+}
+
+@media only screen and (max-width: 640px) { 
+    .appContainer {
+        .appMainContent {
+            padding: 0;
+        }
+    }
+}
+

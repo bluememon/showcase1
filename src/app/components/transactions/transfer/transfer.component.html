@@ -1,0 +1,108 @@
+<div class="transferMod">
+    <div class="infoBox">
+        <div class="infobox-header">
+            <div class="infobox-header-icon">
+                <img src="../../../../assets/icons/arrows.png" title="transfer" class="transferIcon" />
+            </div>
+            <div class="infobox-header-title">Make a Transfer</div>
+        </div>
+        <div class="infobox-content">
+            <div class="transferMod-Form">
+                <form class="formTheme" [formGroup]="transferForm" (ngSubmit)="confirmTransaction()" >
+                    <div class="formTheme-container">
+                        <div class="formTheme-container-label">
+                            <label>from account</label>
+                        </div>
+                        <div class="formTheme-container-control">
+                            <input disabled formControlName="fromAccount" type="text" class="" value="{{activeAccount.type}}({{activeAccount.id}}) ${{activeAccount.funds}}"/>
+                        </div>
+                    </div>
+                    <div class="formTheme-container">
+                        <div class="formTheme-container-label">
+                            <label>to account</label>
+                        </div>
+                        <div class="formTheme-container-control">
+                            <input type="text" class="" formControlName="toAccount" #toAccount />
+                            <div class="formTheme-validation-message" *ngIf="transferForm.get('toAccount').errors?.required && transferForm.get('ammount').touched">
+                                    This field cannot be empty
+                            </div>
+                        </div>
+                    </div>
+                    <div class="formTheme-container">
+                        <div class="formTheme-container-label">
+                            <label>amount</label>
+                        </div>
+                        <div class="formTheme-container-control">
+                            <input class="transferMod-valueField" type="number" formControlName="ammount" placeholder="0.00" (blur)="formatNumber()" /> 
+                            <span class="ammount-symbol">$</span>
+                            <div class="formTheme-validation-message" *ngIf="transferForm.get('ammount').errors?.required && transferForm.get('ammount').touched">
+                                This field cannot be empty
+                            </div>
+                            <div class="formTheme-validation-message" *ngIf="transferForm.get('ammount').errors?.max">
+                                Cannot Transfer more that $500
+                            </div>
+                        </div>
+                    </div>
+                    <div class="formTheme-container">
+                        <div class="formTheme-container-control">
+                            <button type="submit" class="primary rightAligned">
+                                submit
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for transfer confirmation -->
+<div class="modal" [ngClass]="{'show':showModal}">
+    <div class="transferMod" (clickElsewhere)="hideModal()">
+        <div class="infoBox">
+            <div class="infobox-header">
+                <div class="infobox-header-icon">
+                    <img src="../../../../assets/icons/arrows.png" title="transfer" class="transferIcon" />
+                </div>
+                <div class="infobox-header-title">Confirm Transfer</div>
+            </div>
+            <div class="infobox-content">
+                <div class="transferMod-Form">
+                    <div class="formTheme" [formGroup]="transferForm" (ngSubmit)="onSubmit()" >
+                        <div class="formTheme-container">
+                            <div class="formTheme-container-label">
+                                <label>from account</label>
+                            </div>
+                            <div class="formTheme-container-control">
+                                {{activeAccount.type}}({{activeAccount.id}}) ${{activeAccount.funds}}
+                            </div>
+                        </div>
+                        <div class="formTheme-container">
+                            <div class="formTheme-container-label">
+                                <label>to account</label>
+                            </div>
+                            <div class="formTheme-container-control">
+                                {{transferForm.get('toAccount').value}}
+                            </div>
+                        </div>
+                        <div class="formTheme-container">
+                            <div class="formTheme-container-label">
+                                <label>amount</label>
+                            </div>
+                            <div class="formTheme-container-control">
+                                ${{transferForm.get('ammount').value}}
+                            </div>
+                        </div>
+                        <div class="formTheme-container">
+                            <div class="formTheme-container-control">
+                                <button type="submit" class="primary rightAligned" (click)="onSubmit()">
+                                    transfer
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

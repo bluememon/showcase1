@@ -1,0 +1,54 @@
+<div class="historyMod">
+    <div class="infoBox">
+        <div class="infobox-header">
+            <div class="infobox-header-icon">
+                <img src="../../../../assets/icons/briefcase.png" title="transfer" class="transferIcon" />
+            </div>
+            <div class="infobox-header-title">Recent Transactions</div>
+        </div>
+        <div class="infobox-content noPaddingTop">
+            <div class="historyMod-controls">
+                    <div class="formTheme historyMod-controls-form">
+                        <div class="formTheme-container">
+                            <div class="formTheme-container-control">
+                                <input #searchTextElm type="text" class="" placeholder="Search by typing..." [(ngModel)]="searchText" (focus)="showClearSearch()" />
+                                <span class="searchClearButton" (click)="clearSearch()" [ngClass]="{'show': showClearButton}">X</span>
+                            </div>
+                        </div>
+                        <div class="formTheme-container historyMod-controls-form-sortButtons">
+                            <div class="formTheme-container-label">
+                                <label>sort by</label>
+                            </div>
+                            <div class="formTheme-container-control">
+                                <button class="sortButton" (click)="sortByDate()" [ngClass]="{'active':orderByType === 'date', 'ascending': orderByType === 'date' && ascending, 'descending': orderByType === 'date' && !ascending}">
+                                    date <span class="arrow"></span>
+                                </button>
+                                <button class="sortButton" (click)="sortByBeneficiary()" [ngClass]="{'active':orderByType === 'merchant', 'ascending': orderByType === 'merchant' && ascending, 'descending': orderByType === 'merchant' && !ascending}">
+                                    beneficiary <span class="arrow"></span>
+                                </button>
+                                <button class="sortButton" (click)="sortByAmount()" [ngClass]="{'active':orderByType === 'amount', 'ascending': orderByType === 'amount' && ascending, 'descending': orderByType === 'amount' && !ascending}">
+                                    amount <span class="arrow"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="historyMod-timeline">
+                <div class="historyMod-timeline-row" *ngFor="let transaction of transactionHistory?.data | orderBy:orderByType:ascending | filterMerchant : searchText">
+                    <div class="transColor" [ngStyle]="{'background-color': transaction.categoryCode}"></div>
+                    <div class="historyMod-timeline-row-info">
+                        <div class="transDate">{{transaction.transactionDate | date: 'MMM dd'}}</div>
+                        <div class="transLogo">
+                            <img [src]="transaction.merchantLogo" />
+                        </div>
+                        <div class="transInfo">
+                            <div class="transInfo-merchant">{{transaction.merchant}}</div>
+                            <div class="transInfo-transactionType">{{transaction.transactionType}}</div>
+                        </div>
+                        <div class="transAmount">-${{transaction.amount}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

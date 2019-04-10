@@ -1,0 +1,29 @@
+@import '../../../variables.scss';
+
+.transferMod {
+    .ammount-symbol {
+        position: absolute;
+        top: 0;
+        color: #cccccc;
+    }
+
+    .transferMod-valueField {
+        padding-left: 15px;
+    }
+}
+
+.modal {
+    display: none;
+
+    &.show {
+        display: flex;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    
+}
+
+@media only screen and (max-width: 640px) { 
+    
+}

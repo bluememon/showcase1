@@ -1,0 +1,47 @@
+@import '../../variables.scss';
+
+.transactionsMod {
+    position: relative;
+    margin: 0 auto;
+    padding: 0;
+
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    max-width: $max-width;
+
+    .transferModContainer {
+        position: relative;
+        margin: 0;
+        padding: 0;
+
+        width: $left-rail-width;
+        margin-right: 30px;
+    }
+
+    .historyModContainer {
+        position: relative;
+        margin: 0;
+        padding: 0;
+
+        flex: 1;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    .transactionsMod{
+        flex-wrap: wrap;
+
+        .transferModContainer {
+            margin-right: 0px;
+            width: 100%;
+        }
+    }
+}
+
+@media only screen and (max-width: 640px) { 
+    
+}

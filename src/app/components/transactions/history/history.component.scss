@@ -1,0 +1,196 @@
+@import '../../../variables.scss';
+
+.historyMod {
+    .historyMod-controls {
+        padding: 15px 0;
+    }
+    //form overrides for this view
+    .historyMod-controls-form {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: flex-end;
+        justify-content: flex-start;
+
+        //overrides for first child and discrepancies on mockup designs
+        .formTheme-container {
+            padding-top: 0;
+        }
+
+        .formTheme-container:first-of-type {
+            flex: 1;
+            margin-right: 30px;
+        }
+
+        .searchClearButton {
+            position: absolute;
+            top: 0;
+            right: -15px;
+            color: #cccccc;
+            padding: 0 10px;
+            cursor: pointer;
+
+            display: none;
+
+            &.show {
+                display: inline-block;
+            }
+        }
+
+        .historyMod-controls-form-sortButtons {
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-items: center;
+            justify-content: flex-end;
+
+            .formTheme-container-label {
+                flex: 1;
+                label {
+                    text-transform: capitalize;
+                    margin-right: 20px;
+                }
+            }
+
+            .formTheme-container-control {
+                position: relative;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+            }
+        }
+    }
+
+    .historyMod-timeline {
+        $borderStyle: solid 1px #cccccc;
+
+        .historyMod-timeline-row {
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-items: center;
+            justify-content: flex-start;
+            border-right: $borderStyle;
+
+            &:last-child {
+                border-bottom: $borderStyle;
+            }
+
+            .transColor {
+                width: 10px;
+                align-self: stretch;
+            }
+            .historyMod-timeline-row-info {
+                $cell-padding: 0 25px;
+
+                position: relative;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                align-items: center;
+                justify-content: flex-start;
+
+                padding: 13px 0;
+
+                flex: 1;
+                border-top: $borderStyle;
+
+                .transDate {
+                    padding: $cell-padding;
+                }
+                .transLogo {
+                    img {
+                        filter: grayscale(100%);
+                        height: 40px;
+                        width: auto;
+                    }
+                }
+                .transInfo {
+                    padding: $cell-padding;
+                    flex: 1;
+                }
+                .transAmount {
+                    padding: $cell-padding;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    
+}
+
+@media only screen and (max-width: 640px) { 
+    .historyMod {
+        .infobox-content {
+            padding: 0;
+        }
+
+        .historyMod-controls {
+            padding: 0;
+
+            .historyMod-controls-form {
+                flex-wrap: wrap;
+
+                .historyMod-controls-form-sortButtons {
+                    flex-wrap: wrap;
+
+                    .formTheme-container-label,
+                    .formTheme-container-control {
+                        width: 100%;
+                    }
+                }
+
+                .formTheme-container {
+                    padding: $infoBoxPaddingWidth;
+                }
+
+                .historyMod-controls-form-sortButtons {
+                    padding: 0;
+
+                    .formTheme-container-label {
+                        padding: 0 $infoBoxPaddingWidth;  
+                        padding-bottom: 0;
+                    }
+
+                    .formTheme-container-control {
+                        .arrow {
+                            display: block;
+                            margin: 0 auto;
+                        }
+                    }
+                }
+            }
+        }
+
+        .historyMod-timeline {
+            .historyMod-timeline-row {
+                .historyMod-timeline-row-info {
+                    flex-wrap: wrap;
+                    .transDate {
+                        order: 3;
+                        flex-basis: 30%;
+                    }
+                    .transLogo {
+                        order: 1;
+                        padding: 0 $infoBoxPaddingWidth;
+                    }
+                    .transInfo {
+                        order: 2;
+                        flex-basis: 57%;
+                        font-size: 15px;
+                    }
+                    .transAmount {
+                        order: 4;
+                        flex-basis: 40%;
+                        text-align: right;
+                    }
+                }
+            }
+        }
+    }
+}
